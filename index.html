@@ -6,6 +6,13 @@
     <title>Eternal Games | Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <style>
+        /* Globalne resetowanie, żeby nic nie wystawało */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         :root {
             --bg: #000;
             --card: #111;
@@ -19,21 +26,24 @@
             background-size: 30px 30px;
             color: #fff;
             font-family: 'Inter', sans-serif;
-            margin: 0;
+            
+            /* Idealne wyśrodkowanie na środku ekranu */
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: flex-start; /* Zaczynamy od góry, ale z dużym marginesem */
             min-height: 100vh;
-            padding-bottom: 50px;
+            padding: 20px;
         }
 
-        /* FLAGI */
+        /* MENU JĘZYKÓW - Pływające */
         .lang-menu {
-            position: absolute;
-            top: 20px;
-            right: 20px;
+            width: 100%;
+            max-width: 500px;
             display: flex;
+            justify-content: flex-end;
             gap: 15px;
+            margin-bottom: 10px;
         }
 
         .lang-btn {
@@ -43,7 +53,6 @@
             cursor: pointer;
             transition: transform 0.2s, opacity 0.3s;
             opacity: 0.4;
-            padding: 0;
         }
 
         .lang-btn:hover { transform: scale(1.2); opacity: 0.8; }
@@ -52,8 +61,8 @@
         /* NAWIGACJA */
         nav {
             display: flex;
-            gap: 20px;
-            margin: 60px 0 40px 0;
+            gap: 15px;
+            margin-bottom: 30px;
             flex-wrap: wrap;
             justify-content: center;
         }
@@ -64,75 +73,83 @@
             color: #fff;
             font-family: 'Inter', sans-serif;
             font-weight: bold;
-            font-size: 1.1rem;
+            font-size: clamp(0.8rem, 4vw, 1.1rem); /* Dynamiczna wielkość czcionki */
             cursor: pointer;
             text-transform: lowercase;
             transition: 0.3s;
             padding: 5px 10px;
+            border-bottom: 2px solid transparent;
         }
 
         nav button.active { border-bottom: 2px solid #fff; }
 
-        /* KONTENER TREŚCI */
+        /* KONTENER TREŚCI - Teraz idealnie wyśrodkowany */
         .content-box {
+            width: 100%;
             max-width: 500px;
-            width: 90%;
             background: var(--card);
             border: 1px solid var(--border);
             border-radius: 15px;
-            padding: 30px;
+            padding: clamp(20px, 5vw, 40px);
             display: none;
             animation: fadeIn 0.4s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
         .content-box.active { display: block; }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
+            from { opacity: 0; transform: translateY(5px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        h1, h2 { font-family: 'Press Start 2P', cursive; font-size: 1rem; text-align: center; line-height: 1.5; }
-        p { color: #ccc; line-height: 1.6; text-align: center; }
+        h1, h2 { font-family: 'Press Start 2P', cursive; font-size: 0.9rem; text-align: center; line-height: 1.6; margin-bottom: 20px; }
+        p { color: #ccc; line-height: 1.6; text-align: center; font-size: 0.95rem; }
 
         .avatar {
-            width: 180px;
-            height: 180px;
+            width: 100%;
+            max-width: 200px;
+            aspect-ratio: 1/1;
             display: block;
-            margin: 25px auto;
-            border-radius: 20px;
-            border: 2px solid var(--border);
+            margin: 20px auto;
+            border-radius: 15px;
+            border: 1px solid var(--border);
             object-fit: cover;
         }
 
+        /* SOCIAL MEDIA */
         .socials-bar {
             display: flex;
             justify-content: center;
-            gap: 25px;
-            margin-top: 30px;
-            background: rgba(255, 255, 255, 0.05);
-            padding: 15px 25px;
+            gap: 20px;
+            margin-top: 25px;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 12px;
             border-radius: 50px;
             border: 1px solid var(--border);
         }
 
-        .socials-bar a { transition: transform 0.2s, opacity 0.2s; opacity: 1; }
-        .socials-bar a:hover { transform: scale(1.2); }
-        .socials-bar img { width: 32px; height: 32px; display: block; }
+        .socials-bar a { transition: transform 0.2s; display: flex; align-items: center; }
+        .socials-bar a:hover { transform: scale(1.15); }
+        .socials-bar img { width: 28px; height: 28px; }
 
         .white-icon { filter: brightness(0) invert(1); }
 
+        /* KAFELKI */
         .item-card {
-            background: #181818;
+            background: rgba(255,255,255,0.02);
             border: 1px solid var(--border);
             border-radius: 10px;
-            padding: 20px;
+            padding: 15px;
             margin-bottom: 15px;
+            text-align: left;
         }
 
-        @media (max-width: 480px) {
-            .lang-menu { position: relative; top: 0; right: 0; margin-top: 20px; display: flex; justify-content: center; }
-            nav { margin-top: 20px; }
+        /* Responsywność dla bardzo małych ekranów */
+        @media (max-width: 400px) {
+            nav { gap: 5px; }
+            .content-box { padding: 20px 15px; }
+            .socials-bar { gap: 15px; }
         }
     </style>
 </head>
@@ -157,18 +174,10 @@
         <p data-key="home-desc">Hi! We are <strong>Eternal Games</strong>. We create projects and games. Check our tabs to learn more about our work.</p>
 
         <div class="socials-bar">
-            <a href="https://discord.gg/kfqa3WBeU8" target="_blank">
-                <img src="https://cdn-icons-png.flaticon.com/512/5968/5968756.png" alt="Discord">
-            </a>
-            <a href="https://www.tiktok.com/@ciciklol" target="_blank">
-                <img src="https://cdn-icons-png.flaticon.com/512/3116/3116491.png" alt="TikTok" class="white-icon">
-            </a>
-            <a href="https://www.youtube.com/@ciciklol" target="_blank">
-                <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube">
-            </a>
-            <a href="https://github.com/ciciklol" target="_blank">
-                <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub" class="white-icon">
-            </a>
+            <a href="https://discord.gg/kfqa3WBeU8" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/5968/5968756.png" alt="Discord"></a>
+            <a href="https://www.tiktok.com/@ciciklol" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/3116/3116491.png" alt="TikTok" class="white-icon"></a>
+            <a href="https://www.youtube.com/@ciciklol" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube"></a>
+            <a href="https://github.com/ciciklol" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub" class="white-icon"></a>
         </div>
     </div>
 
@@ -176,7 +185,7 @@
         <h2 data-key="games-title">OUR GAMES</h2>
         <div class="item-card">
             <strong data-key="game-name">Game Name</strong>
-            <p style="text-align: left; font-size: 0.85rem;" data-key="game-desc">Coming soon...</p>
+            <p style="text-align: left; font-size: 0.85rem; margin-top: 5px;" data-key="game-desc">Coming soon...</p>
         </div>
     </div>
 
@@ -211,7 +220,7 @@
             de: {
                 "nav-home": "startseite", "nav-games": "spiele", "nav-projects": "projekte", "nav-blog": "blog",
                 "home-title": "WILLKOMMEN BEI<br>ETERNAL GAMES",
-                "home-desc": "Hallo! Wir sind <strong>Eternal Games</strong>. Wir erstellen Projekte und Spiele. Schau dir unsere Tabs an, um mehr zu erfahren.",
+                "home-desc": "Hallo! Wir sind <strong>Eternal Games</strong>. Wir erstellen Projekte und Spiele. Schau dir meine Tabs an, um mehr zu erfahren.",
                 "games-title": "UNSERE SPIELE", "game-name": "Spielname", "game-desc": "Demnächst...",
                 "projects-title": "ANDERE PROJEKTE", "projects-desc": "Technische Projekte außerhalb von Roblox.",
                 "blog-title": "BLOG", "blog-empty": "Noch keine Beiträge!"
@@ -236,3 +245,4 @@
     </script>
 </body>
 </html>
+
