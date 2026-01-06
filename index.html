@@ -17,6 +17,7 @@
             --card: #111;
             --border: #333;
             --accent: #fff;
+            --robux-gold: #ffb800;
         }
 
         body {
@@ -32,7 +33,7 @@
             padding: 40px 20px;
         }
 
-        /* NAPRAWIONE FLAGI */
+        /* FLAGI */
         .lang-menu {
             display: flex;
             justify-content: center;
@@ -50,13 +51,13 @@
         }
 
         .lang-btn img {
-            width: 35px;         /* Stała szerokość */
-            height: 25px;        /* Stała wysokość */
+            width: 35px;         
+            height: 25px;        
             display: block;
             border-radius: 4px;
-            object-fit: cover;   /* Wypełnia obszar bez zniekształceń */
+            object-fit: cover;   
             object-position: center;
-            border: 1px solid rgba(255,255,255,0.1); /* Delikatna ramka dla estetyki */
+            border: 1px solid rgba(255,255,255,0.1);
         }
 
         .lang-btn:hover { transform: scale(1.2); opacity: 0.7; }
@@ -110,15 +111,60 @@
         h1, h2 { font-family: 'Press Start 2P', cursive; font-size: 0.9rem; text-align: center; line-height: 1.6; margin-bottom: 25px; }
         p { color: #ccc; line-height: 1.6; text-align: center; font-size: 0.95rem; }
 
+        .logo-link {
+            display: block;
+            margin: 20px auto;
+            width: fit-content;
+            transition: transform 0.3s ease;
+            text-decoration: none;
+        }
+
+        .logo-link:hover { transform: scale(1.05); }
+
         .avatar {
             width: 100%;
             max-width: 220px;
             aspect-ratio: 1/1;
             display: block;
-            margin: 20px auto;
             border-radius: 20px;
             border: 1px solid var(--border);
-            object-fit: cover;
+            object-fit: contain;
+            background: #fff;
+        }
+
+        /* SIATKA GAMEPASSÓW */
+        .gamepass-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(85px, 1fr));
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .gamepass-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 12px 5px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.75rem;
+            font-weight: bold;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            transition: 0.2s;
+        }
+
+        .gamepass-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .robux-icon {
+            color: var(--robux-gold);
+            font-size: 0.7rem;
         }
 
         /* SOCIAL MEDIA */
@@ -136,7 +182,6 @@
         .socials-bar a { transition: transform 0.2s; opacity: 1; }
         .socials-bar a:hover { transform: scale(1.2); }
         .socials-bar img { width: 32px; height: 32px; display: block; }
-
         .white-icon { filter: brightness(0) invert(1); }
 
         .item-card {
@@ -168,13 +213,15 @@
         <button onclick="showPage('games')" id="btn-games" data-key="nav-games">games</button>
         <button onclick="showPage('projects')" id="btn-projects" data-key="nav-projects">projects</button>
         <button onclick="showPage('blog')" id="btn-blog" data-key="nav-blog">blog</button>
+        <button onclick="showPage('support')" id="btn-support" data-key="nav-support">support</button>
     </nav>
 
     <div id="home" class="content-box active">
         <h1 data-key="home-title">WELCOME TO<br>ETERNAL GAMES</h1>
-        <img src="avatar.png" alt="Avatar" class="avatar">
+        <a href="https://www.roblox.com/communities/33683789/Eternal-Games#!/about" target="_blank" class="logo-link">
+            <img src="Untitled165_20260106142908.png" alt="Eternal Games Logo" class="avatar">
+        </a>
         <p data-key="home-desc">Hi! We are <strong>Eternal Games</strong>. We create projects and games. Check our tabs to learn more about our work.</p>
-
         <div class="socials-bar">
             <a href="https://discord.gg/kfqa3WBeU8" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/5968/5968756.png" alt="Discord"></a>
             <a href="https://www.tiktok.com/@ciciklol" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/3116/3116491.png" alt="TikTok" class="white-icon"></a>
@@ -201,31 +248,62 @@
         <p data-key="blog-empty">No posts yet. Stay tuned!</p>
     </div>
 
+    <div id="support" class="content-box">
+        <h2 data-key="support-title">SUPPORT US</h2>
+        <p data-key="support-desc">Buy a gamepass to support our development!</p>
+        
+        <div class="gamepass-grid">
+            <a href="https://www.roblox.com/game-pass/1658791645" target="_blank" class="gamepass-btn"><span>2</span><span class="robux-icon">R$</span></a>
+            <a href="https://www.roblox.com/game-pass/1658607994" target="_blank" class="gamepass-btn"><span>3</span><span class="robux-icon">R$</span></a>
+            <a href="https://www.roblox.com/game-pass/1658256202" target="_blank" class="gamepass-btn"><span>4</span><span class="robux-icon">R$</span></a>
+            <a href="https://www.roblox.com/game-pass/1661767904" target="_blank" class="gamepass-btn"><span>5</span><span class="robux-icon">R$</span></a>
+            <a href="https://www.roblox.com/game-pass/1658503956" target="_blank" class="gamepass-btn"><span>10</span><span class="robux-icon">R$</span></a>
+            <a href="https://www.roblox.com/game-pass/1660492237" target="_blank" class="gamepass-btn"><span>15</span><span class="robux-icon">R$</span></a>
+            <a href="https://www.roblox.com/game-pass/1658503959" target="_blank" class="gamepass-btn"><span>20</span><span class="robux-icon">R$</span></a>
+            <a href="https://www.roblox.com/game-pass/1661683890" target="_blank" class="gamepass-btn"><span>30</span><span class="robux-icon">R$</span></a>
+            <a href="https://www.roblox.com/game-pass/1658603756" target="_blank" class="gamepass-btn"><span>40</span><span class="robux-icon">R$</span></a>
+            <a href="https://www.roblox.com/game-pass/1661787925" target="_blank" class="gamepass-btn"><span>50</span><span class="robux-icon">R$</span></a>
+            <a href="https://www.roblox.com/game-pass/1660550211" target="_blank" class="gamepass-btn"><span>100</span><span class="robux-icon">R$</span></a>
+            <a href="https://www.roblox.com/game-pass/1661701898" target="_blank" class="gamepass-btn"><span>200</span><span class="robux-icon">R$</span></a>
+            <a href="https://www.roblox.com/game-pass/1661332037" target="_blank" class="gamepass-btn"><span>500</span><span class="robux-icon">R$</span></a>
+            <a href="https://www.roblox.com/game-pass/1660386302" target="_blank" class="gamepass-btn"><span>800</span><span class="robux-icon">R$</span></a>
+            <a href="https://www.roblox.com/game-pass/1661052111" target="_blank" class="gamepass-btn"><span>1,000</span><span class="robux-icon">R$</span></a>
+            <a href="https://www.roblox.com/game-pass/1661923851" target="_blank" class="gamepass-btn"><span>1,500</span><span class="robux-icon">R$</span></a>
+            <a href="https://www.roblox.com/game-pass/1661607888" target="_blank" class="gamepass-btn"><span>2,000</span><span class="robux-icon">R$</span></a>
+            <a href="https://www.roblox.com/game-pass/1658567866" target="_blank" class="gamepass-btn"><span>10,000</span><span class="robux-icon">R$</span></a>
+            <a href="https://www.roblox.com/game-pass/1658429938" target="_blank" class="gamepass-btn"><span>100,000</span><span class="robux-icon">R$</span></a>
+            <a href="https://www.roblox.com/game-pass/1660122441" target="_blank" class="gamepass-btn"><span>1,000,000</span><span class="robux-icon">R$</span></a>
+        </div>
+    </div>
+
     <script>
         const translations = {
             en: {
-                "nav-home": "home", "nav-games": "games", "nav-projects": "projects", "nav-blog": "blog",
+                "nav-home": "home", "nav-games": "games", "nav-projects": "projects", "nav-blog": "blog", "nav-support": "support",
                 "home-title": "WELCOME TO<br>ETERNAL GAMES",
                 "home-desc": "Hi! We are <strong>Eternal Games</strong>. We create projects and games. Check our tabs to learn more about our work.",
                 "games-title": "OUR GAMES", "game-name": "Game Name", "game-desc": "Coming soon...",
                 "projects-title": "OTHER PROJECTS", "projects-desc": "Technical projects outside of Roblox.",
-                "blog-title": "BLOG", "blog-empty": "No posts yet. Stay tuned!"
+                "blog-title": "BLOG", "blog-empty": "No posts yet. Stay tuned!",
+                "support-title": "SUPPORT US", "support-desc": "Buy a gamepass to support our development!"
             },
             pl: {
-                "nav-home": "start", "nav-games": "gry", "nav-projects": "projekty", "nav-blog": "blog",
+                "nav-home": "start", "nav-games": "gry", "nav-projects": "projekty", "nav-blog": "blog", "nav-support": "wsparcie",
                 "home-title": "WITAJ W<br>ETERNAL GAMES",
                 "home-desc": "Cześć! Jesteśmy <strong>Eternal Games</strong>. Tworzymy projekty i gry. Sprawdź zakładki, aby dowiedzieć się więcej.",
                 "games-title": "NASZE GRY", "game-name": "Nazwa Gry", "game-desc": "Wkrótce...",
                 "projects-title": "INNE PROJEKTY", "projects-desc": "Projekty techniczne poza Robloxem.",
-                "blog-title": "BLOG", "blog-empty": "Brak wpisów. Wrócą niebawem!"
+                "blog-title": "BLOG", "blog-empty": "Brak wpisów. Wrócą niebawem!",
+                "support-title": "WESPRZYJ NAS", "support-desc": "Kup gamepass, aby wesprzeć nasz rozwój!"
             },
             de: {
-                "nav-home": "startseite", "nav-games": "spiele", "nav-projects": "projekte", "nav-blog": "blog",
+                "nav-home": "startseite", "nav-games": "spiele", "nav-projects": "projekte", "nav-blog": "blog", "nav-support": "support",
                 "home-title": "WILLKOMMEN BEI<br>ETERNAL GAMES",
                 "home-desc": "Hallo! Wir sind <strong>Eternal Games</strong>. Wir erstellen Projekte und Spiele. Schau dir meine Tabs an, um mehr zu erfahren.",
                 "games-title": "UNSERE SPIELE", "game-name": "Spielname", "game-desc": "Demnächst...",
                 "projects-title": "ANDERE PROJEKTE", "projects-desc": "Technische Projekte außerhalb von Roblox.",
-                "blog-title": "BLOG", "blog-empty": "Noch keine Beiträge!"
+                "blog-title": "BLOG", "blog-empty": "Noch keine Beiträge!",
+                "support-title": "UNTERSTÜTZE UNS", "support-desc": "Kaufe einen Gamepass, um unsere Entwicklung zu unterstützen!"
             }
         };
 
